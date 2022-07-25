@@ -21,20 +21,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupSubView()
     }
-
-    private func setupSubView() {
-        view.addSubview(mainView)
-        NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: view.topAnchor),
-            mainView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            mainView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
-        mainView.weightSlider.addTarget(self, action: #selector(weightValueChanged), for:.valueChanged)
-        mainView.heightSlider.addTarget(self, action: #selector(heightValueChanged), for:.valueChanged)
-        mainView.calculateButton.addTarget(self, action: #selector(calculateTapped), for: .touchUpInside)
-    }
-    
     @objc func weightValueChanged(slider: UISlider) {
         let weight = String(format: "%.0f", slider.value)
         mainView.weightValueLabel.text = "\(weight)Kg"
@@ -60,6 +46,17 @@ class MainViewController: UIViewController {
         present(resultVC, animated: true, completion: nil)
     }
     
-  
+    private func setupSubView() {
+        view.addSubview(mainView)
+        NSLayoutConstraint.activate([
+            mainView.topAnchor.constraint(equalTo: view.topAnchor),
+            mainView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            mainView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        mainView.weightSlider.addTarget(self, action: #selector(weightValueChanged), for:.valueChanged)
+        mainView.heightSlider.addTarget(self, action: #selector(heightValueChanged), for:.valueChanged)
+        mainView.calculateButton.addTarget(self, action: #selector(calculateTapped), for: .touchUpInside)
+    }
 }
 

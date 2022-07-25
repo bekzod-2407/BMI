@@ -33,7 +33,7 @@ class ResultView: UIView {
         var view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.text = "16.9"
-        view.textColor = .black
+        view.textColor = .systemGray6
         view.textAlignment = .center
         view.font = .monospacedSystemFont(ofSize: 49, weight: .semibold)
         return view
@@ -43,9 +43,9 @@ class ResultView: UIView {
         var view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.text = "eat more pies!!"
-        view.textColor = .black
+        view.textColor = .systemGray6
         view.textAlignment = .center
-        view.font = .monospacedSystemFont(ofSize: 18, weight: .medium)
+        view.font = .monospacedSystemFont(ofSize: 34, weight: .medium)
         return view
     }()
     
@@ -55,7 +55,7 @@ class ResultView: UIView {
         view.text = "YOUR RESULT"
         view.textColor = .systemGray6
         view.textAlignment = .center
-        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
+        view.font = .monospacedSystemFont(ofSize: 34, weight: .bold)
         return view
     }()
     
@@ -68,7 +68,6 @@ class ResultView: UIView {
         return view
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubView()
@@ -77,8 +76,6 @@ class ResultView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
     private func setupSubView() {
         self.addSubview(backgroundImage)
@@ -98,8 +95,6 @@ class ResultView: UIView {
             recalculateButton.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -25),
             
             recalculateButton.heightAnchor.constraint(equalToConstant: 75),
-            
-            
         ])
     }
 }
