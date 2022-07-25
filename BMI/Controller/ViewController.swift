@@ -11,15 +11,20 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
-    
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var weightSlider: UISlider!
+    
+    private lazy var mainView: MainView = {
+        var view = MainView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     var calculateBrain = CalculatorBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupSubView()
     }
 
     @IBAction func heightValueChanged(_ sender: UISlider) {
@@ -52,6 +57,18 @@ class ViewController: UIViewController {
             secondVC.advice = calculateBrain.getAdvice()
             secondVC.view.backgroundColor = calculateBrain.getColor()
         }
+    }
+    
+    private func setupSubView() {
+        
+        view.addSubview(mainView)
+        NSLayoutConstraint.activate([
+        
+            mainView.topAnchor.constraint(equalTo: view.topAnchor),
+            mainView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            mainView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
     
     

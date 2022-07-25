@@ -23,7 +23,8 @@ class MainView: UIView {
         heightStack,
         heightSlider,
         weightStack,
-        weightSlider
+        weightSlider,
+        calculateButton
         ])
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.distribution = .fillProportionally
@@ -37,14 +38,14 @@ class MainView: UIView {
         view.text = "CALCULATE YOUR BMI"
         view.textColor = .black
         view.textAlignment = .center
-        view.font = .monospacedSystemFont(ofSize: 38, weight: .bold)
+        view.font = .monospacedSystemFont(ofSize: 26, weight: .semibold)
         return view
     }()
     lazy var heightStack: UIStackView = {
         var view = UIStackView(arrangedSubviews: [heightWordLabel,heightValueLabel])
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.axis = .horizontal
-        view.distribution = .fillProportionally
+        view.distribution = .fillEqually
         return view
     }()
     
@@ -53,8 +54,8 @@ class MainView: UIView {
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.text = "Height"
         view.textColor = .black
-        view.textAlignment = .center
-        view.font = .monospacedSystemFont(ofSize: 38, weight: .bold)
+        view.textAlignment = .left
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .medium)
         return view
     }()
     
@@ -63,8 +64,8 @@ class MainView: UIView {
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.text = "0m"
         view.textColor = .black
-        view.textAlignment = .center
-        view.font = .monospacedSystemFont(ofSize: 38, weight: .bold)
+        view.textAlignment = .right
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .medium)
         return view
     }()
     lazy var heightSlider: UISlider = {
@@ -81,7 +82,7 @@ class MainView: UIView {
         var view = UIStackView(arrangedSubviews: [weightWordLabel,weightValueLabel])
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.axis = .horizontal
-        view.distribution = .fillProportionally
+        view.distribution = .fillEqually
         return view
     }()
     lazy var weightWordLabel: UILabel = {
@@ -89,8 +90,8 @@ class MainView: UIView {
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.text = "weight"
         view.textColor = .black
-        view.textAlignment = .center
-        view.font = .monospacedSystemFont(ofSize: 38, weight: .bold)
+        view.textAlignment = .left
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
         return view
     }()
     
@@ -99,8 +100,8 @@ class MainView: UIView {
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.text = "1,5 kg"
         view.textColor = .black
-        view.textAlignment = .center
-        view.font = .monospacedSystemFont(ofSize: 38, weight: .bold)
+        view.textAlignment = .right
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
         return view
     }()
     
@@ -114,10 +115,19 @@ class MainView: UIView {
         return view
     }()
     
+    lazy var calculateButton: UIButton = {
+        var view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setTitle("Calculate", for: .normal)
+        view.tintColor = .white
+        view.backgroundColor = #colorLiteral(red: 0.2901960784, green: 0.1176470588, blue: 0.537254902, alpha: 1)
+        return view
+    }()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupSubView()
     }
     
     required init?(coder: NSCoder) {
@@ -127,6 +137,26 @@ class MainView: UIView {
     
     
     private func setupSubView() {
+        self.addSubview(backgroundImage)
+        self.addSubview(mainStack)
         
+        NSLayoutConstraint.activate([
+            backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
+            backgroundImage.leftAnchor.constraint(equalTo: self.leftAnchor),
+            backgroundImage.rightAnchor.constraint(equalTo: self.rightAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            mainStack.topAnchor.constraint(equalTo: self.topAnchor,constant: 10),
+            mainStack.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 10),
+            mainStack.rightAnchor.constraint(equalTo: self.rightAnchor,constant: -10),
+            mainStack.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -25),
+            
+            calculateButton.heightAnchor.constraint(equalToConstant: 75),
+            weightSlider.heightAnchor.constraint(equalToConstant: 50),
+            heightSlider.heightAnchor.constraint(equalToConstant: 50),
+            weightStack.heightAnchor.constraint(equalToConstant: 25),
+            heightStack.heightAnchor.constraint(equalToConstant: 25),
+            
+        ])
     }
 }
