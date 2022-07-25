@@ -9,11 +9,6 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var heightLabel: UILabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var heightSlider: UISlider!
-    @IBOutlet weak var weightSlider: UISlider!
-    
     private lazy var mainView: MainView = {
         var view = MainView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -27,20 +22,9 @@ class MainViewController: UIViewController {
         setupSubView()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GotoSecondVC" {
-            let secondVC = segue.destination as! ResultViewController
-            secondVC.BMIValue = calculateBrain.getBMIValue()
-            secondVC.advice = calculateBrain.getAdvice()
-            secondVC.view.backgroundColor = calculateBrain.getColor()
-        }
-    }
-    
     private func setupSubView() {
-        
         view.addSubview(mainView)
         NSLayoutConstraint.activate([
-        
             mainView.topAnchor.constraint(equalTo: view.topAnchor),
             mainView.leftAnchor.constraint(equalTo: view.leftAnchor),
             mainView.rightAnchor.constraint(equalTo: view.rightAnchor),
@@ -53,26 +37,27 @@ class MainViewController: UIViewController {
     
     @objc func weightValueChanged(slider: UISlider) {
         let weight = String(format: "%.0f", slider.value)
-        weightLabel.text = "\(weight)Kg"
+        mainView.weightValueLabel.text = "\(weight)Kg"
     }
     
     @objc func heightValueChanged(slider: UISlider) {
       let height = String(format: "%.2f", slider.value)
-        heightLabel.text = "\(height)m"
+        mainView.heightValueLabel.text = "\(height)m"
     }
     
     @objc func calculateTapped(button: UIButton) {
-        let height = heightSlider.value
-        let weight = weightSlider.value
-       
+        let height = mainView.heightSlider.value
+        let weight = mainView.weightSlider.value
+       calculateBrain.calculateBMI(height: height,weight: weight)
         
-        calculateBrain.calculateBMI(height: height,weight: weight)
-       
+        let resultVC  =  ResultViewController()
+        resultVC.BMIValue = calculateBrain.getBMIValue()
+        resultVC.advice = calculateBrain.getAdvice()
+        resultVC.view.backgroundColor = calculateBrain.getColor()
         
-        performSegue(withIdentifier: "GotoSecondVC", sender: self)
-        
-
-        
+        resultVC.modalTransitionStyle = .flipHorizontal
+        resultVC.modalPresentationStyle = .fullScreen
+        present(resultVC, animated: true, completion: nil)
     }
     
   

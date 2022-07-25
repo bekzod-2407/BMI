@@ -49,7 +49,7 @@ class MainView: UIView {
         return view
     }()
     
-    lazy var heightWordLabel: UILabel = {
+   private lazy var heightWordLabel: UILabel = {
         var view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.text = "Height"
@@ -78,14 +78,14 @@ class MainView: UIView {
         return view
     }()
     
-    lazy var weightStack: UIStackView = {
+    private lazy var weightStack: UIStackView = {
         var view = UIStackView(arrangedSubviews: [weightWordLabel,weightValueLabel])
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.axis = .horizontal
         view.distribution = .fillEqually
         return view
     }()
-    lazy var weightWordLabel: UILabel = {
+    private lazy var weightWordLabel: UILabel = {
         var view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints =  false
         view.text = "weight"

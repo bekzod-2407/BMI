@@ -61,13 +61,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		CE09CEC128639F9E002094C9 /* Controller */ = {
+		CE09CEC128639F9E002094C9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				CE95C56D2863220000E08FCB /* MainViewController.swift */,
 				CE09CEC228639FBE002094C9 /* ResultViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		CE95C55D2863220000E08FCB = {
@@ -92,7 +92,7 @@
 				CE09CEC028639F90002094C9 /* Model */,
 				CE09CEBF28639F84002094C9 /* View */,
 				CE95C5692863220000E08FCB /* AppDelegate.swift */,
-				CE09CEC128639F9E002094C9 /* Controller */,
+				CE09CEC128639F9E002094C9 /* Controllers */,
 				CE95C5722863220000E08FCB /* Assets.xcassets */,
 				CE95C5742863220000E08FCB /* LaunchScreen.storyboard */,
 				CE95C5772863220000E08FCB /* Info.plist */,
