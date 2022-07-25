@@ -91,7 +91,7 @@ class MainView: UIView {
         view.text = "weight"
         view.textColor = .black
         view.textAlignment = .left
-        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .medium)
         return view
     }()
     
@@ -101,7 +101,7 @@ class MainView: UIView {
         view.text = "1,5 kg"
         view.textColor = .black
         view.textAlignment = .right
-        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .medium)
         return view
     }()
     
@@ -124,7 +124,6 @@ class MainView: UIView {
         return view
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubView()
@@ -133,9 +132,7 @@ class MainView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
+   
     private func setupSubView() {
         self.addSubview(backgroundImage)
         self.addSubview(mainStack)

@@ -18,9 +18,9 @@ struct CalculatorBrain {
         let bmiValue = weight / (height * height)  // pow(height, 2)
         if bmiValue < 18.5 {
             bmi = BMI(value: bmiValue, advice: "eat more pies!!", color: color)
-        } else if bmiValue >= 24.9 {
+        } else if bmiValue < 24.9 {
             bmi = BMI(value: bmiValue, advice: "Fit as a fiddle", color: colorGreen)
-        } else if bmiValue > 24.9 {
+        } else   {
             bmi = BMI(value: bmiValue, advice: "East less pies!!", color: colorPink)
         }
     }
