@@ -42,7 +42,7 @@ class ResultView: UIView {
     lazy var adviceLabel: UILabel = {
         var view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints =  false
-        view.text = "Height"
+        view.text = "eat more pies!!"
         view.textColor = .black
         view.textAlignment = .center
         view.font = .monospacedSystemFont(ofSize: 18, weight: .medium)
@@ -90,10 +90,8 @@ class ResultView: UIView {
             backgroundImage.rightAnchor.constraint(equalTo: self.rightAnchor),
             backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            mainStack.topAnchor.constraint(equalTo: self.topAnchor,constant: 10),
-            mainStack.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 10),
-            mainStack.rightAnchor.constraint(equalTo: self.rightAnchor,constant: -10),
-            mainStack.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -25),
+            mainStack.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            mainStack.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             
             recalculateButton.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 10),
             recalculateButton.rightAnchor.constraint(equalTo: self.rightAnchor,constant: -10),

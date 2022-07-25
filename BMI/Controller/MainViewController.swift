@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
@@ -27,32 +27,9 @@ class ViewController: UIViewController {
         setupSubView()
     }
 
-    @IBAction func heightValueChanged(_ sender: UISlider) {
-        
-       let height = String(format: "%.2f", sender.value)
-        heightLabel.text = "\(height)m"
-    }
-    
-    @IBAction func weightValueChanged(_ sender: UISlider) {
-        let weight = String(format: "%.0f", sender.value)
-        weightLabel.text = "\(weight)Kg"
-    }
-    
-    @IBAction func calculateTapped(_ sender: UIButton) {
-        let height = heightSlider.value
-        let weight = weightSlider.value
-       
-        
-        calculateBrain.calculateBMI(height: height,weight: weight)
-       
-        
-        performSegue(withIdentifier: "GotoSecondVC", sender: self)
-        
-    
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GotoSecondVC" {
-            let secondVC = segue.destination as! SecondViewController
+            let secondVC = segue.destination as! ResultViewController
             secondVC.BMIValue = calculateBrain.getBMIValue()
             secondVC.advice = calculateBrain.getAdvice()
             secondVC.view.backgroundColor = calculateBrain.getColor()
@@ -69,8 +46,35 @@ class ViewController: UIViewController {
             mainView.rightAnchor.constraint(equalTo: view.rightAnchor),
             mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+        mainView.weightSlider.addTarget(self, action: #selector(weightValueChanged), for:.valueChanged)
+        mainView.heightSlider.addTarget(self, action: #selector(heightValueChanged), for:.valueChanged)
+        mainView.calculateButton.addTarget(self, action: #selector(calculateTapped), for: .touchUpInside)
     }
     
+    @objc func weightValueChanged(slider: UISlider) {
+        let weight = String(format: "%.0f", slider.value)
+        weightLabel.text = "\(weight)Kg"
+    }
     
+    @objc func heightValueChanged(slider: UISlider) {
+      let height = String(format: "%.2f", slider.value)
+        heightLabel.text = "\(height)m"
+    }
+    
+    @objc func calculateTapped(button: UIButton) {
+        let height = heightSlider.value
+        let weight = weightSlider.value
+       
+        
+        calculateBrain.calculateBMI(height: height,weight: weight)
+       
+        
+        performSegue(withIdentifier: "GotoSecondVC", sender: self)
+        
+
+        
+    }
+    
+  
 }
 
